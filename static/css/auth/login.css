@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://img.freepik.com/premium-vector/network-connection-background-abstract-style_23-2148875738.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 60px 40px; /* Increased vertical padding */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-form h2 {
+    color: #333;
+    margin-bottom: 30px; /* Increased margin for more vertical space */
+}
+
+.input-group {
+    margin-bottom: 30px; /* Increased margin for more vertical space */
+}
+
+.input-group label {
+    display: block;
+    color: #666;
+    margin-bottom: 10px; /* Slightly more space between label and input */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px; /* Increased padding for a taller input field */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 15px; /* Increased padding for a taller button */
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Added space above the button for more vertical stretch */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.login-form {
+    width: 300px; /* Narrower width */
+    margin: auto;
+}
