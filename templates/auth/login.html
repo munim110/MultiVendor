@@ -11,21 +11,12 @@
     <div class="signup-container">
         <form class="signup-form" action="#" method="post">
             {% csrf_token %}
-            <h2>Signup</h2>
-            <div class="form-row">
-                <div class="input-group half">
-                    <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" required>
+            <h2>Login</h2>
+            {% if error %}
+                <div class="form-errors">
+                    <p>{{ error }}</p>
                 </div>
-                <div class="input-group half">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" name="lastname" required>
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+            {% endif %}
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
@@ -34,11 +25,8 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="input-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-            </div>
             <button type="submit">Sign Up</button>
+            <p class="redirect-link">Not a member? <a href="{% url 'register' %}">Register now</a></p>
         </form>
     </div>
 </body>

@@ -61,3 +61,25 @@ button:hover {
     width: 300px; /* Narrower width */
     margin: auto;
 }
+
+.form-errors p {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.redirect-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.redirect-link a {
+    color: #4CAF50; /* Green */
+    text-decoration: none;
+}
+
+.redirect-link a:hover {
+    text-decoration: underline;
+}
