@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your E-commerce Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <!-- Top bar content here -->
+            Welcome to Our Store!
+        </div>
+    </div>
+    <header class="site-header">
+        <div class="container">
+            <h1>E-commerce Site</h1>
+            <!-- Navigation menu -->
+            <nav class="site-nav">
+                <ul>
+                    <li><a href="{% url 'login' %}">Home</a></li>
+                    <li><a href="{% url 'login' %}">Products</a></li>
+                    <li><a href="{% url 'login' %}">About Us</a></li>
+                    <li><a href="{% url 'login' %}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            &copy; 2024 E-commerce Site. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
