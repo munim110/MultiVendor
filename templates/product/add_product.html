@@ -9,6 +9,8 @@
 {% block content %}
 <div class="container">
     <h2>Add New Product</h2>
+    <p class="error-message">{{ message }}</p>
+
     <form action="{% url 'add_product' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
