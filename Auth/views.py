@@ -3,7 +3,14 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.views import APIView
 from .serializers import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
+from rest_framework.response import Response
+from rest_framework import status
+
+
 
 # Create your views here.
 
@@ -64,3 +71,18 @@ def register(request):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+# Allow onlly post method with the decorator
+    
+class ObtainTokenView(APIView):
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+        refresh = RefreshToken.for_user(user)
+        access = AccessToken.for_user(user)
+        return Response({'refresh': str(refresh), 'access': str(access)}, status=status.HTTP_200_OK)
