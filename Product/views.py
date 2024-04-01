@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import *
 from Vendor.models import Vendor
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from .serializers import ProductSerializer
+from .serializers import *
 
 
 # Create your views here.
@@ -140,3 +140,8 @@ class demoAPIView(APIView):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class CategoryViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

@@ -3,7 +3,9 @@
 
 {% block title %}Add Product{% endblock %}
 {% block extra_css %}
+{% if dark_theme %}
 <link rel="stylesheet" href="{% static 'css/product/add_product.css' %}">
+{% else %}
 {% endblock %}
 
 {% block content %}
