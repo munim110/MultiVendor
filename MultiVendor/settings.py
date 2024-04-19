@@ -169,3 +169,5 @@ SSLCOMMERZ_STORE_PASSWORD = 'inter661ff9903cb19@ssl'
 SSLCOMMERZ_IS_SANDBOX = True
 if SSLCOMMERZ_IS_SANDBOX:
     SSLCOMMERZ_CHECKOUT_URL = 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php'
+else:
+    SSLCOMMERZ_CHECKOUT_URL = 'https://securepay.sslcommerz.com/gwprocess/v4/api.php'
