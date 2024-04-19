@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'Auth',
     'Vendor',
     'Product',
+    'Payment',
 
 ]
 
@@ -149,3 +151,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add simple JWT settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS':
+    ('django_filters.rest_framework.DjangoFilterBackend',
+    'rest_framework.filters.SearchFilter'),
+}
+
+
+SSLCOMMERZ_STORE_ID = 'inter661ff9903cb19'
+SSLCOMMERZ_STORE_PASSWORD = 'inter661ff9903cb19@ssl'
+SSLCOMMERZ_IS_SANDBOX = True
+if SSLCOMMERZ_IS_SANDBOX:
+    SSLCOMMERZ_CHECKOUT_URL = 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php'

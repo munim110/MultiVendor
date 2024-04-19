@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', signin, name='login'),
     path('register/', register, name='register'),
     path('token/', ObtainTokenView.as_view(), name='token'),
+    path('token/refresh/', AccessTokenFromRefreshToken.as_view(), name='refresh_token'),
 ] + router.urls

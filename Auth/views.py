@@ -86,3 +86,18 @@ class ObtainTokenView(APIView):
         refresh = RefreshToken.for_user(user)
         access = AccessToken.for_user(user)
         return Response({'refresh': str(refresh), 'access': str(access)}, status=status.HTTP_200_OK)
+    
+
+
+class AccessTokenFromRefreshToken(APIView):
+
+    def post(self, request):
+        refresh = request.data.get('refresh')
+        try:
+            token = RefreshToken(refresh)
+            print(token)
+            user = User.objects.get(id=token['user_id'])
+            access = AccessToken.for_user(user)
+            return Response({'access': str(access)}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': 'Invalid refresh token'}, status=status.HTTP_400_BAD_REQUEST)

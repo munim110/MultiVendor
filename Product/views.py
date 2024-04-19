@@ -8,7 +8,10 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.filters import SearchFilter
 from .serializers import *
+from .permissions import *
 
 
 # Create your views here.
@@ -118,6 +121,10 @@ def demoAPI(request):
 class demoAPIView(APIView):
 
     def get(self, request):
+        if not request.user.is_authenticated:
+            return Response({'error': 'You are not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
+        if not request.user.is_staff and not request.user.is_superuser:
+            return Response({'error': 'You are not authorized to access this API'}, status=status.HTTP_403_FORBIDDEN)
         response = {
         "Name": "Product API",
         "Message": "This is a demo API for Product"
@@ -140,8 +147,25 @@ class demoAPIView(APIView):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    # permission_classes = [IsAuthenticated]
+    filter_backends = [SearchFilter]
+    search_fields = ['name', 'description']
 
 
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [CustomPermission]
+
+
+# write a ModelViewSet for Products
+# Each vendor should be able to see only their products
+# and the API cannot be accessed by an unauthenticated user and those who are not vendors
+
+class ProductOfVendorViewset(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [CustomProductPermission]
+
+    def get_queryset(self):
+        return Product.objects.filter(vendor__user=self.request.user)

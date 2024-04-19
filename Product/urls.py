@@ -5,6 +5,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register('products', ProductViewSet, basename='product')
 router.register('categories', CategoryViewSet, basename='category')
+router.register('vendor-products', ProductOfVendorViewset, basename='vendor')
 
 urlpatterns = [
     path('add/', addProduct, name='add_product'),
