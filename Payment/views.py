@@ -94,6 +94,7 @@ class SSLCommerzSuccessView(APIView):
     def post(self, request):
         data = request.data
         print(data)
+        return Response(data=data, status=200)
 
 
 class SSLCommerzFailView(APIView):
@@ -101,6 +102,7 @@ class SSLCommerzFailView(APIView):
         def post(self, request):
             data = request.data
             print(data)
+            return Response(data=data, status=200)
 
 
 class SSLCommerzCancelView(APIView):
@@ -108,3 +110,4 @@ class SSLCommerzCancelView(APIView):
         def post(self, request):
             data = request.data
             print(data)
+            return Response(data=data, status=200)
