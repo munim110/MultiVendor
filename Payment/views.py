@@ -94,7 +94,18 @@ class SSLCommerzSuccessView(APIView):
     def post(self, request):
         data = request.data
         print(data)
-        return Response(data=data, status=200)
+        val_id = data.get('val_id')
+        store_id = settings.SSLCOMMERZ_STORE_ID
+        store_passwd = settings.SSLCOMMERZ_STORE_PASSWORD
+        url = settings.SSLCOMMERZ_VALIDATE_URL
+        post_data = {
+            'store_id': store_id,
+            'store_passwd': store_passwd,
+            'val_id': val_id,
+            'format': 'json'
+        }
+        response = requests.post(url, data=post_data, files=[])
+        return Response(response.json(), status=response.status_code)
 
 
 class SSLCommerzFailView(APIView):

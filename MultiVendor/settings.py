@@ -171,3 +171,9 @@ if SSLCOMMERZ_IS_SANDBOX:
     SSLCOMMERZ_CHECKOUT_URL = 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php'
 else:
     SSLCOMMERZ_CHECKOUT_URL = 'https://securepay.sslcommerz.com/gwprocess/v4/api.php'
+
+
+if SSLCOMMERZ_IS_SANDBOX:
+    SSLCOMMERZ_VALIDATE_URL = 'https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php'
+else:
+    SSLCOMMERZ_VALIDATE_URL = 'https://securepay.sslcommerz.com/validator/api/validationserverAPI.php'
