@@ -105,7 +105,7 @@ class SSLCommerzSuccessView(APIView):
             'format': 'json'
         }
         response = requests.post(url, data=post_data, files=[])
-        if response.json().get('status') == 'VALID':
+        if response.json().get('status')[0] == 'VALID':
             transaction_id = response.json().get('tran_id')
             order = Order.objects.get(transaction_id=transaction_id)
             print(order.transaction_id, order.status, order.amount, order.id)
