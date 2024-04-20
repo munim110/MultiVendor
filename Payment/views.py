@@ -97,14 +97,9 @@ class SSLCommerzSuccessView(APIView):
         val_id = data.get('val_id')
         store_id = settings.SSLCOMMERZ_STORE_ID
         store_passwd = settings.SSLCOMMERZ_STORE_PASSWORD
-        url = settings.SSLCOMMERZ_VALIDATE_URL
-        post_data = {
-            'store_id': store_id,
-            'store_passwd': store_passwd,
-            'val_id': val_id,
-            'format': 'json'
-        }
-        response = requests.post(url, data=post_data, files=[])
+        url = settings.SSLCOMMERZ_VALIDATE_URL + f'?val_id={val_id}&store_id={store_id}&store_passwd={store_passwd}&format=json'
+        
+        response = requests.get(url=url)
         # if response.json().get('status')[0] == 'VALID':
         #     transaction_id = response.json().get('tran_id')
         #     order = Order.objects.get(transaction_id=transaction_id)
@@ -113,7 +108,7 @@ class SSLCommerzSuccessView(APIView):
         #     order.save()
         #     print(order.transaction_id, order.status, order.amount, order.id)
         print(response)
-        return Response(response, status=response.status_code)
+        return Response(response.json(), status=response.status_code)
 
 
 class SSLCommerzFailView(APIView):
