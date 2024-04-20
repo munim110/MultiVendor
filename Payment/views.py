@@ -52,9 +52,9 @@ class SSLCommerzGateWayAPI(APIView):
         amount = order.amount
         currency = 'BDT'
         tran_id = order.transaction_id
-        success_url = ''
-        fail_url = ''
-        cancel_url = ''
+        success_url = 'http://13.213.44.206:8000/payment/success/'
+        fail_url = 'http://13.213.44.206:8000/payment/fail/'
+        cancel_url = 'http://13.213.44.206:8000/payment/cancel/'
         product_category = 'None'
         cus_add1 = ''
         cus_city = 'Dhaka'
@@ -86,3 +86,25 @@ class SSLCommerzGateWayAPI(APIView):
 
         response = requests.post(url, data=post_data, files=[])
         return Response(response.json(), status=response.status_code)
+    
+
+
+class SSLCommerzSuccessView(APIView):
+
+    def post(self, request):
+        data = request.data
+        print(data)
+
+
+class SSLCommerzFailView(APIView):
+    
+        def post(self, request):
+            data = request.data
+            print(data)
+
+
+class SSLCommerzCancelView(APIView):
+    
+        def post(self, request):
+            data = request.data
+            print(data)
