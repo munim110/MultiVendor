@@ -100,13 +100,13 @@ class SSLCommerzSuccessView(APIView):
         url = settings.SSLCOMMERZ_VALIDATE_URL + f'?val_id={val_id}&store_id={store_id}&store_passwd={store_passwd}&format=json'
         
         response = requests.get(url=url)
-        # if response.json().get('status')[0] == 'VALID':
-        #     transaction_id = response.json().get('tran_id')
-        #     order = Order.objects.get(transaction_id=transaction_id)
-        #     print(order.transaction_id, order.status, order.amount, order.id)
-        #     order.status = 'COMPLETED'
-        #     order.save()
-        #     print(order.transaction_id, order.status, order.amount, order.id)
+        if response.json().get('status') == 'VALID':
+            transaction_id = response.json().get('tran_id')
+            order = Order.objects.get(transaction_id=transaction_id)
+            print(order.transaction_id, order.status, order.amount, order.id)
+            order.status = 'COMPLETED'
+            order.save()
+            print(order.transaction_id, order.status, order.amount, order.id)
         print(response)
         return Response(response.json(), status=response.status_code)
 
