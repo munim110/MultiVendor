@@ -52,9 +52,9 @@ class SSLCommerzGateWayAPI(APIView):
         amount = order.amount
         currency = 'BDT'
         tran_id = order.transaction_id
-        success_url = 'http://13.213.44.206:8000/payment/success/'
-        fail_url = 'http://13.213.44.206:8000/payment/fail/'
-        cancel_url = 'http://13.213.44.206:8000/payment/cancel/'
+        success_url = 'http://54.254.223.31:8000/payment/success/'
+        fail_url = 'http://54.254.223.31:8000/payment/fail/'
+        cancel_url = 'http://154.254.223.31:8000/payment/cancel/'
         product_category = 'None'
         cus_add1 = ''
         cus_city = 'Dhaka'
