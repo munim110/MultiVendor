@@ -106,8 +106,6 @@ class SSLCommerzSuccessView(APIView):
             print(order.transaction_id, order.status, order.amount, order.id)
             order.status = 'COMPLETED'
             order.save()
-            print(order.transaction_id, order.status, order.amount, order.id)
-        print(response)
         return Response(response.json(), status=response.status_code)
 
 
